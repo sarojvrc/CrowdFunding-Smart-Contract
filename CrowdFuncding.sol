@@ -59,6 +59,7 @@ contract CrowdFuncding{
         Contributors[msg.sender] = 0;
     }
 
+    //function for make a Request
     function makeRequest(string memory _description, address payable _recipient, uint _value) public{
         require(msg.sender == Manager, "Only Manager can make request");
         Request storage new_Request = requests[num_of_request];
@@ -70,6 +71,7 @@ contract CrowdFuncding{
         new_Request.noOfVotors = 0;
     }
 
+    //function for voting
     function Voting(uint _num_of_requests) public {
         require(Contributors[msg.sender] > 0, "You are not a contributor");
         Request storage this_Request = requests[_num_of_requests];
@@ -78,6 +80,7 @@ contract CrowdFuncding{
         this_Request.noOfVotors++;
     }
 
+    //function for making a payment
     function makePayment(uint _num_of_request) public{
         require(raiseAmount >= target);
         require(msg.sender == Manager, "Only manager can call this function");
